@@ -1,6 +1,9 @@
 package com.gquintela;
 
-import java.awt.*;
+import java.awt.Point;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,6 +57,21 @@ public class Sudoku {
 
     public void setNumber(int n, int x, int y) {
         board[x][y] = n;
+    }
+    
+    public void writeToFile(String filename) throws IOException {
+        String parsedFilename = "puzzles/" + "SOLVED_" + filename;
+        File myfile = new File(parsedFilename);
+
+        FileWriter myWriter = new FileWriter(parsedFilename);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                    myWriter.write(board[i][j] + " ");
+            }
+            myWriter.write("\n");
+        }
+        System.out.println("\nSuccessfully wrote the answer to the file " + parsedFilename);
+        myWriter.close();
     }
 
     //Private methods
